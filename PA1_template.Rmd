@@ -4,7 +4,7 @@ output:
   html_document:
     keep_md: true
 ---
-test1
+wincred
 
 ## Loading and preprocessing the data
 
