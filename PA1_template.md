@@ -1,24 +1,22 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 ## Loading and preprocessing the data
 
-```{r}
+
+```r
 unzip("activity.zip")
 activity <- read.csv("activity.csv")
 ```
 
 
 ## What is mean total number of steps taken per day?
-```{r}
+
+```r
 totalSteps<-aggregate(steps~date,data=activity, FUN = sum,na.rm=TRUE)
 hist(totalSteps$steps, xlab = "Total Steps per day")
-
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
 
 
 
