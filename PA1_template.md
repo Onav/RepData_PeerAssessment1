@@ -66,6 +66,52 @@ maxInterval
 
 ## Imputing missing values
 
+Number of missing values:
 
+
+```r
+sum(is.na(activity))
+```
+
+```
+## [1] 2304
+```
+
+Replace NAs with mean steps for that interval over all days.
+
+
+```r
+imputedActivity <- activity
+imputedActivity$steps <- 
+  ifelse(is.na(imputedActivity$steps),
+        stepsInterval$steps[match(imputedActivity$interval,stepsInterval$interval)],
+        imputedActivity$steps)
+```
+Calculate total steps per day of imputed data and look at distribution.
+
+```r
+imputedTotalSteps<-aggregate(steps~date,data=imputedActivity, FUN = sum,na.rm=TRUE)
+hist(imputedTotalSteps$steps, xlab = "Total Steps per day")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
+
+Calculate mean and median of total steps
+
+```r
+mean(imputedTotalSteps$steps)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+median(imputedTotalSteps$steps)
+```
+
+```
+## [1] 10766.19
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
